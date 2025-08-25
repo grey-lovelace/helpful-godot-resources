@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://chncatwsa6vj2"]
+
+[ext_resource type="Script" uid="uid://cb31fyuhqwup5" path="res://pixel_outline/pixel_outline_example.gd" id="1_2d284"]
+[ext_resource type="Shader" uid="uid://cerlauoxjn8aj" path="res://pixel_outline/pixel_outline.gdshader" id="2_q1pd5"]
+[ext_resource type="SpriteFrames" uid="uid://qr08f1ndifui" path="res://assets/knight_sprite.tres" id="3_oukho"]
+[ext_resource type="PackedScene" uid="uid://bj31c88fxtb73" path="res://clickable_area.tscn" id="4_l2io5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ft0i7"]
+shader = ExtResource("2_q1pd5")
+shader_parameter/outline_active = false
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_thickness = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ykkw"]
+size = Vector2(96, 106)
+
+[node name="PixelOutlineExample" type="Node2D"]
+script = ExtResource("1_2d284")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_ft0i7")
+position = Vector2(1.78814e-07, -21)
+scale = Vector2(6, 6)
+sprite_frames = ExtResource("3_oukho")
+animation = &"new_animation"
+autoplay = "new_animation"
+
+[node name="Label" type="Label" parent="."]
+offset_left = -98.0
+offset_top = -110.0
+offset_right = 117.0
+offset_bottom = -68.0
+theme_override_font_sizes/font_size = 30
+text = "PIXEL OUTLINE"
+
+[node name="ClickableArea" parent="." instance=ExtResource("4_l2io5")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickableArea"]
+position = Vector2(10, -3)
+shape = SubResource("RectangleShape2D_2ykkw")

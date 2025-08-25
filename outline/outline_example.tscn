@@ -1,0 +1,105 @@
+[gd_scene load_steps=16 format=3 uid="uid://c11hbvw2fvfh4"]
+
+[ext_resource type="Script" uid="uid://d1knmmvbpd464" path="res://outline/outline_example.gd" id="1_2d284"]
+[ext_resource type="Shader" uid="uid://vvis1nrterhk" path="res://outline/outline.gdshader" id="2_q1pd5"]
+[ext_resource type="Texture2D" uid="uid://cbimheio8hsfy" path="res://assets/kenney_toon-characters-1/Robot/Tilesheet/character_robot_sheetHD.png" id="3_2d284"]
+[ext_resource type="PackedScene" uid="uid://bj31c88fxtb73" path="res://clickable_area.tscn" id="4_l2io5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ft0i7"]
+shader = ExtResource("2_q1pd5")
+shader_parameter/outline_active = true
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_thickness = 2.0
+shader_parameter/alpha_threshold = 0.5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1pd5"]
+atlas = ExtResource("3_2d284")
+region = Rect2(0, 1024, 192, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6bl0"]
+atlas = ExtResource("3_2d284")
+region = Rect2(192, 1024, 192, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0n7ss"]
+atlas = ExtResource("3_2d284")
+region = Rect2(384, 1024, 192, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7o0h"]
+atlas = ExtResource("3_2d284")
+region = Rect2(576, 1024, 192, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ql1bk"]
+atlas = ExtResource("3_2d284")
+region = Rect2(768, 1024, 192, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yof15"]
+atlas = ExtResource("3_2d284")
+region = Rect2(960, 1024, 192, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6fe3"]
+atlas = ExtResource("3_2d284")
+region = Rect2(1152, 1024, 192, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6l6c"]
+atlas = ExtResource("3_2d284")
+region = Rect2(1344, 1024, 192, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m12vi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q1pd5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6bl0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0n7ss")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7o0h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ql1bk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yof15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6fe3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6l6c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ykkw"]
+size = Vector2(137, 158)
+
+[node name="OutlineExample" type="Node2D"]
+script = ExtResource("1_2d284")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_ft0i7")
+position = Vector2(-5.96046e-08, -14)
+scale = Vector2(0.835, 0.835)
+sprite_frames = SubResource("SpriteFrames_m12vi")
+autoplay = "default"
+
+[node name="Label" type="Label" parent="."]
+offset_left = -65.0
+offset_top = -110.0
+offset_right = 66.0
+offset_bottom = -68.0
+theme_override_font_sizes/font_size = 30
+text = "OUTLINE"
+
+[node name="ClickableArea" parent="." instance=ExtResource("4_l2io5")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickableArea"]
+position = Vector2(-2.5, 14)
+shape = SubResource("RectangleShape2D_2ykkw")

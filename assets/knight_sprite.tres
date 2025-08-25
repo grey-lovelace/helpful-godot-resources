@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://qr08f1ndifui"]
+
+[ext_resource type="Texture2D" uid="uid://jlqlw40kdhaw" path="res://assets/knight_shovel.png" id="1_kaiw0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6bl0"]
+atlas = ExtResource("1_kaiw0")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0n7ss"]
+atlas = ExtResource("1_kaiw0")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7o0h"]
+atlas = ExtResource("1_kaiw0")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ql1bk"]
+atlas = ExtResource("1_kaiw0")
+region = Rect2(96, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6bl0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0n7ss")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7o0h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ql1bk")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]

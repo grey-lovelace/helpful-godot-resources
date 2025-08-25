@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://cbhoua3ubmmwl"]
+
+[ext_resource type="Script" uid="uid://phax1gnyw3nx" path="res://scan_lines/scan_lines_example.gd" id="1_xlt67"]
+[ext_resource type="Shader" uid="uid://bk5p6tdrhbvak" path="res://scan_lines/scan_lines.tres" id="2_h1a0b"]
+[ext_resource type="SpriteFrames" uid="uid://qr08f1ndifui" path="res://assets/knight_sprite.tres" id="3_xlt67"]
+[ext_resource type="PackedScene" uid="uid://bj31c88fxtb73" path="res://clickable_area.tscn" id="4_ntquv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ogfqo"]
+resource_local_to_scene = true
+shader = ExtResource("2_h1a0b")
+shader_parameter/scan_lines_active = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h1a0b"]
+size = Vector2(98, 114)
+
+[node name="ScanLinesExample" type="Node2D"]
+script = ExtResource("1_xlt67")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_ogfqo")
+position = Vector2(0, -19)
+scale = Vector2(6, 6)
+sprite_frames = ExtResource("3_xlt67")
+animation = &"new_animation"
+autoplay = "new_animation"
+
+[node name="Label" type="Label" parent="."]
+offset_left = -83.0
+offset_top = -110.0
+offset_right = 86.0
+offset_bottom = -68.0
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+text = "SCAN LINES"
+
+[node name="ClickableArea" parent="." instance=ExtResource("4_ntquv")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickableArea"]
+position = Vector2(9, -3)
+shape = SubResource("RectangleShape2D_h1a0b")

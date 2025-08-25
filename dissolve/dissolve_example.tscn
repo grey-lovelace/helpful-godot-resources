@@ -1,0 +1,47 @@
+[gd_scene load_steps=9 format=3 uid="uid://25g2fagyd3vn"]
+
+[ext_resource type="Script" uid="uid://dq82fh2te2nol" path="res://dissolve/dissolve_example.gd" id="1_o3jpa"]
+[ext_resource type="Shader" uid="uid://dyfg654eyls8t" path="res://dissolve/dissolve.tres" id="2_o3jpa"]
+[ext_resource type="SpriteFrames" uid="uid://qr08f1ndifui" path="res://assets/knight_sprite.tres" id="3_o3jpa"]
+[ext_resource type="PackedScene" uid="uid://bj31c88fxtb73" path="res://clickable_area.tscn" id="3_t1jsu"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_o3jpa"]
+frequency = 0.0843
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ogfqo"]
+noise = SubResource("FastNoiseLite_o3jpa")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ogfqo"]
+shader = ExtResource("2_o3jpa")
+shader_parameter/noise = SubResource("NoiseTexture2D_ogfqo")
+shader_parameter/dissolve_amount = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ykkw"]
+size = Vector2(97, 112)
+
+[node name="DissolveExample" type="Node2D"]
+script = ExtResource("1_o3jpa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_ogfqo")
+position = Vector2(0, -14)
+scale = Vector2(6, 6)
+sprite_frames = ExtResource("3_o3jpa")
+animation = &"new_animation"
+autoplay = "new_animation"
+
+[node name="Label" type="Label" parent="."]
+offset_left = -71.0
+offset_top = -110.0
+offset_right = 77.0
+offset_bottom = -68.0
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+text = "DISSOLVE"
+
+[node name="ClickableArea" parent="." instance=ExtResource("3_t1jsu")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickableArea"]
+position = Vector2(10.5, 2)
+shape = SubResource("RectangleShape2D_2ykkw")

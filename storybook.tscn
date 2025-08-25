@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://v4x6ykw62f1d"]
+
+[ext_resource type="PackedScene" uid="uid://beljhhf80g82v" path="res://flash/flash_example.tscn" id="1_rfvv1"]
+[ext_resource type="PackedScene" uid="uid://cyuiofmpogq4p" path="res://screen_shake/screen_shake_example.tscn" id="2_vlysr"]
+[ext_resource type="PackedScene" uid="uid://25g2fagyd3vn" path="res://dissolve/dissolve_example.tscn" id="3_ypxli"]
+[ext_resource type="PackedScene" uid="uid://cbhoua3ubmmwl" path="res://scan_lines/scan_lines_example.tscn" id="4_epk44"]
+[ext_resource type="PackedScene" uid="uid://chncatwsa6vj2" path="res://pixel_outline/pixel_outline_example.tscn" id="5_gcnc3"]
+
+[node name="Storybook" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="FlashExample" parent="." instance=ExtResource("1_rfvv1")]
+position = Vector2(-443, 1)
+
+[node name="ScreenShakeExample" parent="." node_paths=PackedStringArray("camera2D") instance=ExtResource("2_vlysr")]
+position = Vector2(-212, 1)
+camera2D = NodePath("../Camera2D")
+
+[node name="DissolveExample" parent="." instance=ExtResource("3_ypxli")]
+position = Vector2(1, 2)
+
+[node name="ScanLinesExample" parent="." instance=ExtResource("4_epk44")]
+position = Vector2(189, 2)
+
+[node name="PixelOutlineExample" parent="." instance=ExtResource("5_gcnc3")]
+position = Vector2(412, 1)
